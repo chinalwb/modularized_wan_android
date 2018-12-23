@@ -1,12 +1,10 @@
 package com.chinalwb.wanandroid;
 
-import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.FrameLayout;
+import android.support.v7.widget.Toolbar;
 
 import com.chinalwb.wanandroid.base.RetrofitClient;
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
@@ -14,15 +12,21 @@ import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
 import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
     ArticlesPresenter mArticlesPresenter;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        this.setSupportActionBar(toolbar);
         initFragment();
     }
 
