@@ -73,7 +73,9 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
         super.onActivityCreated(savedInstanceState);
         initViews();
         addListeners();
-        mPresenter.start();
+        if (mPresenter != null) {
+            mPresenter.start();
+        }
     }
 
     private void initViews() {
@@ -128,7 +130,8 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
 
     @Override
     public void setPresenter(ArticlesContract.Presenter presenter) {
-         mPresenter = checkNotNull(presenter);
+        Log.e("XX", "Set presenter fragment = " + this);
+        mPresenter = checkNotNull(presenter);
     }
 
     @Override
@@ -141,5 +144,11 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
     public void hideLoading() {
         Log.e("XX", "Hide loading..." + System.currentTimeMillis());
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("XX", "Fragment destroy = " + this);
     }
 }

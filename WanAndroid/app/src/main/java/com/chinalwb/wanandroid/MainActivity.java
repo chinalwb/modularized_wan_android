@@ -1,14 +1,21 @@
 package com.chinalwb.wanandroid;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MenuItem;
 
 import com.chinalwb.wanandroid.base.RetrofitClient;
+import com.chinalwb.wanandroid.features.wx.WxFragment;
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
 import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
 import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
@@ -16,9 +23,13 @@ import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String CURRENT_VIEW_ID = "CURRENT_VIEW_ID";
 
     ArticlesPresenter mArticlesPresenter;
+
+    private int currentViewId = R.id.nav_main;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -26,13 +37,21 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    @BindView(R.id.navigation_view)
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(CURRENT_VIEW_ID)) {
+                this.currentViewId = savedInstanceState.getInt(CURRENT_VIEW_ID);
+            }
+        }
         initToolbar();
-        initFragment();
+        showFragment();
     }
 
     private void initToolbar() {
@@ -46,18 +65,62 @@ public class MainActivity extends AppCompatActivity {
                 R.string.nav_close_drawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void initFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        ArticlesListFragment articlesListFragment = (ArticlesListFragment) fragmentManager.findFragmentById(R.id.fragment_container);
-        if (articlesListFragment == null) {
-            articlesListFragment = ArticlesListFragment.newInstance();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, articlesListFragment);
-            fragmentTransaction.commit();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CURRENT_VIEW_ID, this.currentViewId);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        drawerLayout.closeDrawer(GravityCompat.START);
+        int menuId = menuItem.getItemId();
+        boolean handled = false;
+        if (menuId == this.currentViewId) {
+            handled = true;
+        } else {
+            this.currentViewId = menuId;
         }
+
+        if (!handled) {
+            showFragment();
+            menuItem.setCheckable(true);
+        }
+        return true;
+    }
+
+    private void showFragment() {
+        switch (this.currentViewId) {
+            case R.id.nav_main:
+                showArticles();
+                break;
+            case R.id.nav_wx:
+                showWx();
+                break;
+        }
+    }
+
+    private void showArticles() {
+        ArticlesListFragment articlesListFragment = ArticlesListFragment.newInstance();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, articlesListFragment);
+        fragmentTransaction.commit();
+
         IArticlesApi articlesApi = RetrofitClient.getRetrofit().create(IArticlesApi.class);
         mArticlesPresenter = new ArticlesPresenter(articlesApi, articlesListFragment);
+        Log.e("XX", "show articles fragment == " + articlesListFragment);
+    }
+
+    private void showWx() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, WxFragment.newInstance());
+        fragmentTransaction.commit();
     }
 }
