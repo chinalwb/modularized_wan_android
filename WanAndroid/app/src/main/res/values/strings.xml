@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">WanAndroid</string>
+
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
+
+    <string name="nav_main">首页</string>
+    <string name="nav_projects">项目</string>
+    <string name="nav_wx">公众号</string>
+
+    <string name="nav_others">其他</string>
+    <string name="nav_notes">记事本</string>
+    <string name="nav_about">关于</string>
 </resources>
