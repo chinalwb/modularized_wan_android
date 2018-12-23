@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -70,8 +71,13 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initViews();
         addListeners();
         mPresenter.start();
+    }
+
+    private void initViews() {
+        this.recyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL));
     }
 
     private void addListeners() {
@@ -104,7 +110,7 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
     @Override
     public void showArticles(List<Article> articleList) {
         this.mAdapter = new ArticlesListAdapter(articleList);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
         this.recyclerView.setLayoutManager(gridLayoutManager);
         this.recyclerView.setAdapter(this.mAdapter);
     }

@@ -188,4 +188,7 @@ public class Article {
         return zan;
     }
 
+    public boolean isGZH() {
+        return "公众号".equalsIgnoreCase(this.superChapterName);
+    }
 }

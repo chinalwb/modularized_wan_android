@@ -1,22 +1,24 @@
 package com.chinalwb.wanandroid.main.ui;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
+import com.chinalwb.wanandroid.base.Constants;
 import com.chinalwb.wanandroid.main.model.Article;
-import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
-import com.google.common.base.Predicates;
-
-import org.w3c.dom.Text;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ArticlesListAdapter extends RecyclerView.Adapter<ArticlesListAdapter.ViewHolder> {
 
@@ -43,9 +45,7 @@ public class ArticlesListAdapter extends RecyclerView.Adapter<ArticlesListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        CardView cardView = viewHolder.cardView;
-        TextView titleView = cardView.findViewById(R.id.title);
-        titleView.setText(this.articleList.get(position).getTitle());
+        viewHolder.bindTo(articleList.get(position));
     }
 
     @Override
@@ -64,9 +64,40 @@ public class ArticlesListAdapter extends RecyclerView.Adapter<ArticlesListAdapte
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
+
+        @BindView(R.id.type_view)
+        public View typeView;
+
+        @BindView(R.id.title)
+        public TextView titleView;
+
+        @BindView(R.id.author)
+        public TextView authorView;
+
+        @BindView(R.id.category)
+        public TextView categoryView;
+
+        @BindView(R.id.subCategory)
+        public TextView subCategoryView;
+
+        @BindView(R.id.timeView)
+        public TextView timeView;
+
         public ViewHolder(CardView cardView) {
             super(cardView);
             this.cardView = cardView;
+
+            ButterKnife.bind(this, cardView);
+        }
+
+        public void bindTo(Article article) {
+            int typeColor = article.isGZH() ? Constants.COLOR_WX : Constants.COLOR_WAN;
+            this.typeView.setBackgroundColor(typeColor);
+            this.titleView.setText(article.getTitle());
+            this.authorView.setText(article.getAuthor());
+            this.categoryView.setText(article.getSuperChapterName());
+            this.subCategoryView.setText("/" + article.getChapterName());
+            this.timeView.setText(article.getNiceDate());
         }
     }
 }
