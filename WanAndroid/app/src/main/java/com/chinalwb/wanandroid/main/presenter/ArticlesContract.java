@@ -10,9 +10,12 @@ public interface ArticlesContract {
 
     interface Presenter extends BasePresenter {
         void loadArticles(int page);
+        void loadNextPageArticles();
+        void refreshArticles();
     }
 
     interface View extends BaseView<Presenter> {
+        void appendArticles(List<Article> articleList);
         void showArticles(List<Article> articleList);
         void showError(String error);
         void showLoading();

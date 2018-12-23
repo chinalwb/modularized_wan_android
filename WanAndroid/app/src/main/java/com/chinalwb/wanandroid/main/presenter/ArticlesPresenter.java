@@ -14,6 +14,8 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
 
     private IArticlesApi mApi;
     private ArticlesContract.View mArticlesView;
+    private int currentPage;
+    private boolean isLoading = false;
 
     public ArticlesPresenter(IArticlesApi api, ArticlesContract.View view) {
         this.mApi = api;
@@ -23,25 +25,65 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
 
     @Override
     public void loadArticles(int page) {
+        this.toggleLoading(true);
+        this.currentPage = page;
         Call<ArticlesList> call = mApi.listArticles(page);
         call.enqueue(new Callback<ArticlesList>() {
             @Override
             public void onResponse(Call<ArticlesList> call, Response<ArticlesList> response) {
                 List<Article> articleList = response.body().getData().getDatas();
                 mArticlesView.showArticles(articleList);
-                mArticlesView.hideLoading();
+                toggleLoading(false);
             }
 
             @Override
             public void onFailure(Call<ArticlesList> call, Throwable t) {
                 mArticlesView.showError("Unknown");
+                toggleLoading(false);
             }
         });
     }
 
     @Override
-    public void start() {
-        this.mArticlesView.showLoading();
+    public void loadNextPageArticles() {
+        if (isLoading) {
+            return;
+        }
+        this.toggleLoading(true);
+        this.currentPage++;
+        Call<ArticlesList> call = mApi.listArticles(this.currentPage);
+        call.enqueue(new Callback<ArticlesList>() {
+            @Override
+            public void onResponse(Call<ArticlesList> call, Response<ArticlesList> response) {
+                List<Article> articleList = response.body().getData().getDatas();
+                mArticlesView.appendArticles(articleList);
+                toggleLoading(false);
+            }
+
+            @Override
+            public void onFailure(Call<ArticlesList> call, Throwable t) {
+                mArticlesView.showError("Unknown");
+                toggleLoading(false);
+            }
+        });
+    }
+
+    @Override
+    public void refreshArticles() {
         loadArticles(0);
+    }
+
+    @Override
+    public void start() {
+        loadArticles(0);
+    }
+
+    private void toggleLoading(boolean isLoading) {
+        this.isLoading = isLoading;
+        if (isLoading) {
+            this.mArticlesView.showLoading();
+        } else {
+            this.mArticlesView.hideLoading();
+        }
     }
 }
