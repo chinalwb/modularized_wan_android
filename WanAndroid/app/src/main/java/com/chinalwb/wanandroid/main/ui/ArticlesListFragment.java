@@ -52,12 +52,6 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
         super.onAttach(context);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.e("XX", "Fragment on create " + this);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -143,11 +137,5 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
     @Override
     public void hideLoading() {
         swipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e("XX", "Fragment destroy " + this);
     }
 }

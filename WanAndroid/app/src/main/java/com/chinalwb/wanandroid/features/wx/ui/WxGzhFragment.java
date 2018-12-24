@@ -32,10 +32,6 @@ public class WxGzhFragment extends Fragment {
         return new WxGzhFragment();
     }
 
-    public GzhTab getGzhTab() {
-        return mGzhTab;
-    }
-
     public void setGzhTab(GzhTab mGzhTab) {
         this.mGzhTab = mGzhTab;
     }
@@ -63,11 +59,5 @@ public class WxGzhFragment extends Fragment {
             return;
         }
         mGzhNameView.setText(mGzhTab.getName());
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.e("XX", "GZH Fragment destroy " + this);
     }
 }
