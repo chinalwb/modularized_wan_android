@@ -5,7 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.chinalwb.wanandroid.base.RetrofitClient;
+import com.chinalwb.wanandroid.features.wx.api.IGzhApi;
 import com.chinalwb.wanandroid.features.wx.model.GzhTab;
+import com.chinalwb.wanandroid.features.wx.presenter.WxGzhPresenter;
 
 import java.util.List;
 
@@ -34,6 +37,9 @@ public class WxGzhPagerAdapter extends FragmentPagerAdapter {
         GzhTab gzhTab = this.gzhTabList.get(i);
         WxGzhFragment wxGzhFragment = WxGzhFragment.newInstance();
         wxGzhFragment.setGzhTab(gzhTab);
+
+        IGzhApi gzhApi = RetrofitClient.getRetrofit().create(IGzhApi.class);
+        WxGzhPresenter presenter = new WxGzhPresenter(wxGzhFragment, gzhApi, gzhTab);
         return wxGzhFragment;
     }
 

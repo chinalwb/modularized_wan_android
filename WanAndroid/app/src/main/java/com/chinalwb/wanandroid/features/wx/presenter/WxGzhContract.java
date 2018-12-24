@@ -9,7 +9,7 @@ import java.util.List;
 public interface WxGzhContract {
 
     interface Presenter extends BasePresenter {
-        void loadArticles(int gzhId, int pageId);
+        void loadArticles(int gzhId, int page);
     }
 
     interface View extends BaseView<Presenter> {

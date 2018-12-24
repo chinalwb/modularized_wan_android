@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         drawerLayout.closeDrawer(GravityCompat.START);
         int menuId = menuItem.getItemId();
+
         boolean handled = false;
         if (menuId == this.currentViewId) {
             handled = true;
@@ -104,6 +105,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             showFragment();
             menuItem.setCheckable(true);
         }
+
+        CharSequence title = menuItem.getTitle();
+        this.setTitle(title);
         return true;
     }
 

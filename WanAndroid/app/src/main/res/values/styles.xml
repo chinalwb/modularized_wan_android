@@ -12,6 +12,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:singleLine">true</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="Title.Light" parent="Title">
@@ -21,6 +22,7 @@
     <style name="SubTitle">
         <item name="android:textSize">12sp</item>
         <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="SubTitle.Light" parent="SubTitle">

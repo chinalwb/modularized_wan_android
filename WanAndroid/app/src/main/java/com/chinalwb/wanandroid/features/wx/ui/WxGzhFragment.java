@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +13,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
+import com.chinalwb.wanandroid.base.Util;
 import com.chinalwb.wanandroid.features.wx.model.GzhTab;
+import com.chinalwb.wanandroid.features.wx.presenter.WxGzhContract;
+import com.chinalwb.wanandroid.main.model.Article;
+import com.chinalwb.wanandroid.main.ui.ArticlesListAdapter;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WxGzhFragment extends Fragment {
+public class WxGzhFragment extends Fragment implements WxGzhContract.View {
 
+    private WxGzhContract.Presenter mPresenter;
     private GzhTab mGzhTab;
 
-    @BindView(R.id.gzh_name)
-    TextView mGzhNameView;
+    @BindView(R.id.articles_recycler_view)
+    RecyclerView mRecyclerView;
 
     public WxGzhFragment() {
         // Required public empty fragment
@@ -39,12 +48,16 @@ public class WxGzhFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(
-                R.layout.fragment_wx_gzh,
+                getLayoutId(),
                 container,
                 false
         );
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    private int getLayoutId() {
+        return R.layout.fragment_wx_gzh;
     }
 
     @Override
@@ -54,9 +67,31 @@ public class WxGzhFragment extends Fragment {
     }
 
     private void initView() {
-        if (mGzhNameView == null || mGzhTab == null) {
-            return;
+        // this.getActivity().setTitle("公众号");
+
+        if (this.mPresenter != null) {
+            this.mPresenter.start();
         }
-        mGzhNameView.setText(mGzhTab.getName());
+    }
+
+    @Override
+    public void showArticles(List<Article> articleList) {
+        // RecyclerView
+        RecyclerView.Adapter adapter = new GzhArticlesListAdapter(articleList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        this.mRecyclerView.setLayoutManager(layoutManager);
+        this.mRecyclerView.setAdapter(adapter);
+
+        Log.e("XX", "End loading .." + articleList.size());
+    }
+
+    @Override
+    public void setPresenter(WxGzhContract.Presenter presenter) {
+        this.mPresenter = presenter;
+    }
+
+    @Override
+    public void showError(Throwable error) {
+        Util.toast(getContext(), "Unknown");
     }
 }
