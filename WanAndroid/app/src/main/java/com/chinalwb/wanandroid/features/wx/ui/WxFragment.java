@@ -3,9 +3,9 @@ package com.chinalwb.wanandroid.features.wx.ui;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +24,11 @@ public class WxFragment extends Fragment implements WxContract.View {
 
     WxContract.Presenter mPresenter;
 
+    @BindView(R.id.tabs)
+    TabLayout mTabLayout;
+
     @BindView(R.id.pager)
-    ViewPager viewPager;
+    ViewPager mViewPager;
 
     public WxFragment() {
         // Require public empty constructor
@@ -59,7 +62,9 @@ public class WxFragment extends Fragment implements WxContract.View {
     @Override
     public void showGzhTabs(List<GzhTab> gzhTabList) {
         WxGzhPagerAdapter pagerAdapter = new WxGzhPagerAdapter(getFragmentManager(), gzhTabList);
-        viewPager.setAdapter(pagerAdapter);
+        mViewPager.setAdapter(pagerAdapter);
+
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.chinalwb.wanandroid.features.wx.ui;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,6 +15,13 @@ public class WxGzhPagerAdapter extends FragmentPagerAdapter {
     public WxGzhPagerAdapter(FragmentManager fragmentManager, List<GzhTab> gzhTabList) {
         super(fragmentManager);
         this.gzhTabList = gzhTabList;
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        GzhTab gzhTab = this.gzhTabList.get(position);
+        return gzhTab.getName();
     }
 
     @Override
