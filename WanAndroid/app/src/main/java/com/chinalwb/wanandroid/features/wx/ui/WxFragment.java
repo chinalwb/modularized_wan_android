@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ public class WxFragment extends Fragment implements WxContract.View {
 
     WxContract.Presenter mPresenter;
 
+    WxGzhPagerAdapter mPagerAdapter;
+
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
 
@@ -32,7 +35,6 @@ public class WxFragment extends Fragment implements WxContract.View {
 
     public WxFragment() {
         // Require public empty constructor
-        setRetainInstance(true);
     }
 
     public static WxFragment newInstance() {
@@ -43,9 +45,9 @@ public class WxFragment extends Fragment implements WxContract.View {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(
-          R.layout.fragment_wx,
-          container,
-          false
+                R.layout.fragment_wx,
+                container,
+                false
         );
 
         ButterKnife.bind(this, view);
@@ -62,9 +64,8 @@ public class WxFragment extends Fragment implements WxContract.View {
 
     @Override
     public void showGzhTabs(List<GzhTab> gzhTabList) {
-        WxGzhPagerAdapter pagerAdapter = new WxGzhPagerAdapter(getFragmentManager(), gzhTabList);
-        mViewPager.setAdapter(pagerAdapter);
-
+        mPagerAdapter = new WxGzhPagerAdapter(getChildFragmentManager(), gzhTabList);
+        mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
 

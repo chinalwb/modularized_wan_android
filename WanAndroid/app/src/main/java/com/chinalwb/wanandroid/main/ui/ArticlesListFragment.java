@@ -40,7 +40,6 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
 
     public ArticlesListFragment() {
         // Require empty public constructor
-        setRetainInstance(true);
     }
 
     public static ArticlesListFragment newInstance() {

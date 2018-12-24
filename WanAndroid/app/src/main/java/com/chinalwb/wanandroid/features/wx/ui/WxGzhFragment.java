@@ -25,7 +25,6 @@ public class WxGzhFragment extends Fragment {
 
     public WxGzhFragment() {
         // Required public empty fragment
-        setRetainInstance(true);
     }
 
     public static WxGzhFragment newInstance() {
@@ -49,8 +48,8 @@ public class WxGzhFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onStart() {
+        super.onStart();
         initView();
     }
 

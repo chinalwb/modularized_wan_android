@@ -17,6 +17,11 @@ public class WxGzhPagerAdapter extends FragmentPagerAdapter {
         this.gzhTabList = gzhTabList;
     }
 
+    public void setGzhTabList(List<GzhTab> gzhTabList) {
+        this.gzhTabList = gzhTabList;
+        this.notifyDataSetChanged();
+    }
+
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
