@@ -1,6 +1,6 @@
 package com.chinalwb.wanandroid.main.model;
 
-public class ArticlesList {
+public class ArticlesResponse {
 
     private Data data;
     private int errorCode;

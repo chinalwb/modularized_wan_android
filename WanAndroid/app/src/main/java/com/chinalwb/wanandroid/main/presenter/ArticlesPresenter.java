@@ -2,7 +2,7 @@ package com.chinalwb.wanandroid.main.presenter;
 
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
 import com.chinalwb.wanandroid.main.model.Article;
-import com.chinalwb.wanandroid.main.model.ArticlesList;
+import com.chinalwb.wanandroid.main.model.ArticlesResponse;
 
 import java.util.List;
 
@@ -27,17 +27,17 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
     public void loadArticles(int page) {
         this.toggleLoading(true);
         this.currentPage = page;
-        Call<ArticlesList> call = mApi.listArticles(page);
-        call.enqueue(new Callback<ArticlesList>() {
+        Call<ArticlesResponse> call = mApi.listArticles(page);
+        call.enqueue(new Callback<ArticlesResponse>() {
             @Override
-            public void onResponse(Call<ArticlesList> call, Response<ArticlesList> response) {
+            public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
                 List<Article> articleList = response.body().getData().getDatas();
                 mArticlesView.showArticles(articleList);
                 toggleLoading(false);
             }
 
             @Override
-            public void onFailure(Call<ArticlesList> call, Throwable t) {
+            public void onFailure(Call<ArticlesResponse> call, Throwable t) {
                 mArticlesView.showError("Unknown");
                 toggleLoading(false);
             }
@@ -51,17 +51,17 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
         }
         this.toggleLoading(true);
         this.currentPage++;
-        Call<ArticlesList> call = mApi.listArticles(this.currentPage);
-        call.enqueue(new Callback<ArticlesList>() {
+        Call<ArticlesResponse> call = mApi.listArticles(this.currentPage);
+        call.enqueue(new Callback<ArticlesResponse>() {
             @Override
-            public void onResponse(Call<ArticlesList> call, Response<ArticlesList> response) {
+            public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
                 List<Article> articleList = response.body().getData().getDatas();
                 mArticlesView.appendArticles(articleList);
                 toggleLoading(false);
             }
 
             @Override
-            public void onFailure(Call<ArticlesList> call, Throwable t) {
+            public void onFailure(Call<ArticlesResponse> call, Throwable t) {
                 mArticlesView.showError("Unknown");
                 toggleLoading(false);
             }
