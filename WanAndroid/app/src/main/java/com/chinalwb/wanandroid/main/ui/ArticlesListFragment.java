@@ -79,7 +79,7 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
     }
 
     private void initViews() {
-        this.recyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL));
+//        this.recyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL));
     }
 
     private void addListeners() {

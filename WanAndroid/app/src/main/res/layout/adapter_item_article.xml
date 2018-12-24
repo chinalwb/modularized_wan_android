@@ -4,7 +4,8 @@
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
-    android:elevation="2dp">
+    android:layout_margin="5dp"
+    android:elevation="10dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
