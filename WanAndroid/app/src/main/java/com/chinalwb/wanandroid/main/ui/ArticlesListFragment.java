@@ -124,8 +124,8 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
     }
 
     @Override
-    public void showError(String error) {
-        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+    public void showError(Throwable error) {
+        Toast.makeText(getContext(), "Unknown", Toast.LENGTH_LONG).show();
     }
 
     @Override

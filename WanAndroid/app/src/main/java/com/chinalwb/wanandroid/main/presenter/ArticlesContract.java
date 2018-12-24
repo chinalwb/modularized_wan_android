@@ -17,7 +17,6 @@ public interface ArticlesContract {
     interface View extends BaseView<Presenter> {
         void appendArticles(List<Article> articleList);
         void showArticles(List<Article> articleList);
-        void showError(String error);
         void showLoading();
         void hideLoading();
     }

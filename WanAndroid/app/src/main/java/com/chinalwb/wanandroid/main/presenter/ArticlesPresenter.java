@@ -38,7 +38,7 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
 
             @Override
             public void onFailure(Call<ArticlesResponse> call, Throwable t) {
-                mArticlesView.showError("Unknown");
+                mArticlesView.showError(t);
                 toggleLoading(false);
             }
         });
@@ -62,7 +62,7 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
 
             @Override
             public void onFailure(Call<ArticlesResponse> call, Throwable t) {
-                mArticlesView.showError("Unknown");
+                mArticlesView.showError(t);
                 toggleLoading(false);
             }
         });

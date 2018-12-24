@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.chinalwb.wanandroid.base.RetrofitClient;
+import com.chinalwb.wanandroid.features.wx.api.IGzhApi;
+import com.chinalwb.wanandroid.features.wx.presenter.WxPresenter;
 import com.chinalwb.wanandroid.features.wx.ui.WxFragment;
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
 import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
@@ -121,9 +123,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * @TODO
      */
     private void showWx() {
+        WxFragment wxFragment = WxFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, WxFragment.newInstance());
+        fragmentTransaction.replace(R.id.fragment_container, wxFragment);
         fragmentTransaction.commit();
+
+        IGzhApi gzhApi = RetrofitClient.getRetrofit().create(IGzhApi.class);
+        WxPresenter wxPresenter = new WxPresenter(gzhApi, wxFragment);
     }
 }
