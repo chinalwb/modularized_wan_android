@@ -3,7 +3,6 @@ package com.chinalwb.wanandroid;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.chinalwb.wanandroid.base.RetrofitClient;
-import com.chinalwb.wanandroid.features.wx.WxFragment;
+import com.chinalwb.wanandroid.features.wx.ui.WxFragment;
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
 import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
 import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
@@ -117,6 +116,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.e("XX", "show articles fragment == " + articlesListFragment);
     }
 
+    /**
+     * Needs to be dynamic loaded
+     * @TODO
+     */
     private void showWx() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
