@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("XX", "Create activity == " + this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         if (savedInstanceState != null) {
@@ -52,7 +53,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         initToolbar();
-        showFragment();
+        if (savedInstanceState == null) {
+            showFragment();
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("XX", "Restart activity == " + this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("XX", "Destroy activity == " + this);
     }
 
     private void initToolbar() {

@@ -32,6 +32,7 @@ public class WxFragment extends Fragment implements WxContract.View {
 
     public WxFragment() {
         // Require public empty constructor
+        setRetainInstance(true);
     }
 
     public static WxFragment newInstance() {

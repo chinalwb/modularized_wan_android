@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,6 @@ import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
 import com.chinalwb.wanandroid.features.wx.model.GzhTab;
-
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +25,7 @@ public class WxGzhFragment extends Fragment {
 
     public WxGzhFragment() {
         // Required public empty fragment
+        setRetainInstance(true);
     }
 
     public static WxGzhFragment newInstance() {
@@ -59,6 +59,15 @@ public class WxGzhFragment extends Fragment {
     }
 
     private void initView() {
+        if (mGzhNameView == null || mGzhTab == null) {
+            return;
+        }
         mGzhNameView.setText(mGzhTab.getName());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("XX", "GZH Fragment destroy " + this);
     }
 }

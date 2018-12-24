@@ -40,6 +40,7 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
 
     public ArticlesListFragment() {
         // Require empty public constructor
+        setRetainInstance(true);
     }
 
     public static ArticlesListFragment newInstance() {
@@ -54,6 +55,7 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("XX", "Fragment on create " + this);
     }
 
     @Nullable
@@ -130,25 +132,22 @@ public class ArticlesListFragment extends Fragment implements ArticlesContract.V
 
     @Override
     public void setPresenter(ArticlesContract.Presenter presenter) {
-        Log.e("XX", "Set presenter fragment = " + this);
         mPresenter = checkNotNull(presenter);
     }
 
     @Override
     public void showLoading() {
-        Log.e("XX", "Show loading..." + System.currentTimeMillis());
         swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideLoading() {
-        Log.e("XX", "Hide loading..." + System.currentTimeMillis());
         swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("XX", "Fragment destroy = " + this);
+        Log.e("XX", "Fragment destroy " + this);
     }
 }
