@@ -51,8 +51,6 @@ public class WxFragment extends Fragment implements WxContract.View {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        WxGzhPagerAdapter pagerAdapter = new WxGzhPagerAdapter(getFragmentManager());
-//        viewPager.setAdapter(pagerAdapter);
         if (this.mPresenter != null) {
             this.mPresenter.start();
         }
@@ -60,9 +58,8 @@ public class WxFragment extends Fragment implements WxContract.View {
 
     @Override
     public void showGzhTabs(List<GzhTab> gzhTabList) {
-        // Init view pager here
-        // @TODO
-        Log.e("xx", "gzh tab list size = " + gzhTabList.size());
+        WxGzhPagerAdapter pagerAdapter = new WxGzhPagerAdapter(getFragmentManager(), gzhTabList);
+        viewPager.setAdapter(pagerAdapter);
     }
 
     @Override

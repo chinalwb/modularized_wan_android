@@ -7,10 +7,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
+import com.chinalwb.wanandroid.features.wx.model.GzhTab;
+
+import org.w3c.dom.Text;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class WxGzhFragment extends Fragment {
+
+    private GzhTab mGzhTab;
+
+    @BindView(R.id.gzh_name)
+    TextView mGzhNameView;
 
     public WxGzhFragment() {
         // Required public empty fragment
@@ -18,6 +30,14 @@ public class WxGzhFragment extends Fragment {
 
     public static WxGzhFragment newInstance() {
         return new WxGzhFragment();
+    }
+
+    public GzhTab getGzhTab() {
+        return mGzhTab;
+    }
+
+    public void setGzhTab(GzhTab mGzhTab) {
+        this.mGzhTab = mGzhTab;
     }
 
     @Nullable
@@ -28,6 +48,17 @@ public class WxGzhFragment extends Fragment {
                 container,
                 false
         );
+        ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
+        mGzhNameView.setText(mGzhTab.getName());
     }
 }
