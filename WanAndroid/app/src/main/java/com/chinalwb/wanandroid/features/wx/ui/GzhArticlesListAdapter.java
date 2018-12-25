@@ -30,8 +30,6 @@ public class GzhArticlesListAdapter extends RecyclerView.Adapter<GzhArticlesList
         Log.e("xx", "Before " + this.articleList.size());
         this.articleList.addAll(articleList);
         Log.e("xx", "After " + this.articleList.size());
-
-        this.notifyDataSetChanged();
     }
 
     @NonNull

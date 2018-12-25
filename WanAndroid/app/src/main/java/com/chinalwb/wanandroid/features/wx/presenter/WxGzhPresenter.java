@@ -15,7 +15,7 @@ public class WxGzhPresenter implements WxGzhContract.Presenter {
     private WxGzhContract.View mView;
     private IGzhApi mGzhApi;
     private GzhTab mGzhTab;
-    private int currentPage;
+    private int currentPage = 1;
     private boolean isLoading;
 
     public WxGzhPresenter(WxGzhContract.View view, IGzhApi gzhApi, GzhTab gzhTab) {
@@ -75,7 +75,6 @@ public class WxGzhPresenter implements WxGzhContract.Presenter {
         }
         this.toggleLoading(true);
         int gzhId = this.mGzhTab.getId();
-        this.currentPage = 0;
         this.loadArticles(gzhId, this.currentPage);
     }
 

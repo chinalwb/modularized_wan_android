@@ -67,8 +67,6 @@ public class WxGzhFragment extends Fragment implements WxGzhContract.View {
     }
 
     private void initView() {
-        // this.getActivity().setTitle("公众号");
-
         if (this.mPresenter != null) {
             this.mPresenter.start();
         }
@@ -104,6 +102,7 @@ public class WxGzhFragment extends Fragment implements WxGzhContract.View {
     @Override
     public void appendArticles(List<Article> articleList) {
         mAdapter.appendArticleList(articleList);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
