@@ -1,6 +1,8 @@
 package com.chinalwb.wanandroid.features.detail;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.chinalwb.wanandroid.R;
 
@@ -50,5 +52,12 @@ public class ArticleDetailActivity extends AppCompatActivity {
         super.onSupportNavigateUp();
         this.finish();
         return true;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_more, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
