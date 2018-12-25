@@ -16,6 +16,7 @@ public class WxGzhPresenter implements WxGzhContract.Presenter {
     private IGzhApi mGzhApi;
     private GzhTab mGzhTab;
     private int currentPage;
+    private boolean isLoading;
 
     public WxGzhPresenter(WxGzhContract.View view, IGzhApi gzhApi, GzhTab gzhTab) {
         this.mView = view;
@@ -31,20 +32,59 @@ public class WxGzhPresenter implements WxGzhContract.Presenter {
             @Override
             public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
                  mView.showArticles(response.body().getData().getDatas());
+                 toggleLoading(false);
             }
 
             @Override
             public void onFailure(Call<ArticlesResponse> call, Throwable t) {
                 mView.showError(t);
+                toggleLoading(false);
+            }
+        });
+    }
+
+    @Override
+    public void loadNextPageArticles() {
+        if (isLoading) {
+            return;
+        }
+
+        this.toggleLoading(true);
+        int gzhId = this.mGzhTab.getId();
+        Call<ArticlesResponse> call = mGzhApi.loadGzhArticles(gzhId, ++this.currentPage);
+        call.enqueue(new Callback<ArticlesResponse>() {
+            @Override
+            public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse>
+                    response) {
+                mView.appendArticles(response.body().getData().getDatas());
+                toggleLoading(false);
+            }
+
+            @Override
+            public void onFailure(Call<ArticlesResponse> call, Throwable t) {
+                mView.showError(t);
+                toggleLoading(false);
             }
         });
     }
 
     @Override
     public void start() {
-        Log.e("XX", "Start loading..");
+        if (this.isLoading) {
+            return;
+        }
+        this.toggleLoading(true);
         int gzhId = this.mGzhTab.getId();
         this.currentPage = 0;
         this.loadArticles(gzhId, this.currentPage);
+    }
+
+    private void toggleLoading(boolean isLoading) {
+        this.isLoading = isLoading;
+        if (isLoading) {
+            this.mView.showLoading();
+        } else {
+            this.mView.hideLoading();
+        }
     }
 }

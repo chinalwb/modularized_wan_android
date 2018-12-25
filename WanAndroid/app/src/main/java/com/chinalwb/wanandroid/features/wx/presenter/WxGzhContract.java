@@ -10,10 +10,14 @@ public interface WxGzhContract {
 
     interface Presenter extends BasePresenter {
         void loadArticles(int gzhId, int page);
+        void loadNextPageArticles();
     }
 
     interface View extends BaseView<Presenter> {
         void showArticles(List<Article> articleList);
+        void appendArticles(List<Article> articleList);
+        void showLoading();
+        void hideLoading();
     }
 
 }

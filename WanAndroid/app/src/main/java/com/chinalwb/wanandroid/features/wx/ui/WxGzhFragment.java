@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class WxGzhFragment extends Fragment implements WxGzhContract.View {
 
     private WxGzhContract.Presenter mPresenter;
     private GzhTab mGzhTab;
+    private GzhArticlesListAdapter mAdapter;
 
     @BindView(R.id.articles_recycler_view)
     RecyclerView mRecyclerView;
@@ -70,17 +72,38 @@ public class WxGzhFragment extends Fragment implements WxGzhContract.View {
         if (this.mPresenter != null) {
             this.mPresenter.start();
         }
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
+                        .getLayoutManager();
+                int lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+                if (lastVisibleItemPosition == mAdapter.getItemCount() - 1) {
+                    mPresenter.loadNextPageArticles();
+                }
+            }
+        });
     }
 
     @Override
     public void showArticles(List<Article> articleList) {
         // RecyclerView
-        RecyclerView.Adapter adapter = new GzhArticlesListAdapter(articleList);
+        mAdapter = new GzhArticlesListAdapter(articleList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         this.mRecyclerView.setLayoutManager(layoutManager);
-        this.mRecyclerView.setAdapter(adapter);
+        this.mRecyclerView.setAdapter(mAdapter);
+    }
 
-        Log.e("XX", "End loading .." + articleList.size());
+    @Override
+    public void appendArticles(List<Article> articleList) {
+        mAdapter.appendArticleList(articleList);
     }
 
     @Override
@@ -91,5 +114,15 @@ public class WxGzhFragment extends Fragment implements WxGzhContract.View {
     @Override
     public void showError(Throwable error) {
         Util.toast(getContext(), "Unknown");
+    }
+
+    @Override
+    public void showLoading() {
+        Log.e("xx", "Show loading..");
+    }
+
+    @Override
+    public void hideLoading() {
+        Log.e("xx", "Hide loading!");
     }
 }

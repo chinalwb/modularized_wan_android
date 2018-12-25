@@ -3,6 +3,8 @@ package com.chinalwb.wanandroid.features.wx.ui;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +26,11 @@ public class GzhArticlesListAdapter extends RecyclerView.Adapter<GzhArticlesList
         this.articleList = articleList;
     }
 
-    public void setArticleList(List<Article> articleList) {
-        this.articleList = articleList;
+    public void appendArticleList(List<Article> articleList) {
+        Log.e("xx", "Before " + this.articleList.size());
+        this.articleList.addAll(articleList);
+        Log.e("xx", "After " + this.articleList.size());
+
         this.notifyDataSetChanged();
     }
 
