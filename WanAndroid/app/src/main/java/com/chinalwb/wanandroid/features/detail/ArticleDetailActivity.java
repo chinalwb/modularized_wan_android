@@ -1,10 +1,9 @@
 package com.chinalwb.wanandroid.features.detail;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 
 import com.chinalwb.wanandroid.R;
+import com.chinalwb.wanandroid.features.detail.presenter.ArticleDetailPresenter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +13,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ArticleDetailActivity extends AppCompatActivity {
-
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -39,8 +37,11 @@ public class ArticleDetailActivity extends AppCompatActivity {
         String url = getIntent().getStringExtra(ArticleDetailFragment.EXTRA_ARTICLE_URL);
         Bundle bundle = new Bundle();
         bundle.putString(ArticleDetailFragment.EXTRA_ARTICLE_URL, url);
+        bundle.putString(ArticleDetailFragment.EXTRA_ARTICLE_TITLE, title);
         ArticleDetailFragment articleDetailFragment = ArticleDetailFragment.newInstance();
         articleDetailFragment.setArguments(bundle);
+        ArticleDetailPresenter presenter = new ArticleDetailPresenter(articleDetailFragment);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, articleDetailFragment);
@@ -54,10 +55,4 @@ public class ArticleDetailActivity extends AppCompatActivity {
         return true;
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_more, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 }

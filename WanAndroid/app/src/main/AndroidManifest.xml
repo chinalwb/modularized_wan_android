@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".features.detail.ArticleDetailActivity"></activity>
+        <service android:name=".base.DownloadService" />
     </application>
 
 </manifest>
