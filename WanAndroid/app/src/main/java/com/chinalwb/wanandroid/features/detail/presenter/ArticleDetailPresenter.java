@@ -2,8 +2,9 @@ package com.chinalwb.wanandroid.features.detail.presenter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 
-import com.chinalwb.wanandroid.base.DownloadService;
+import com.chinalwb.wanandroid.base.DownloadTask;
 
 public class ArticleDetailPresenter implements ArticleDetailContract.Presenter {
 
@@ -16,15 +17,27 @@ public class ArticleDetailPresenter implements ArticleDetailContract.Presenter {
 
     @Override
     public void save(Context context, String url, String fileName) {
-        Intent intent = new Intent(context, DownloadService.class);
-        intent.putExtra(DownloadService.EXTRA_URL, url);
-        intent.putExtra(DownloadService.EXTRA_FILENAME, fileName);
-        context.startService(intent);
+        DownloadTask downloadTask = new DownloadTask(context, new DownloadTask.DownloadListener() {
+            @Override
+            public void onSuccess() {
+                mView.showSaveResult(true);
+            }
+
+            @Override
+            public void onFailure() {
+                mView.showSaveResult(false);
+            }
+        });
+
+        downloadTask.execute(url, fileName);
     }
 
     @Override
-    public void share() {
-
+    public void share(Context context, String url, String title) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "[WanAndroid]" + title + " : " + url);
+        Intent shareIntent = intent.createChooser(intent, "Share");
+        context.startActivity(shareIntent);
     }
 
     @Override

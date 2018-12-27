@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
 import com.chinalwb.wanandroid.base.Constants;
-import com.chinalwb.wanandroid.features.detail.ArticleDetailActivity;
-import com.chinalwb.wanandroid.features.detail.ArticleDetailFragment;
+import com.chinalwb.wanandroid.features.detail.ui.ArticleDetailActivity;
+import com.chinalwb.wanandroid.features.detail.ui.ArticleDetailFragment;
 import com.chinalwb.wanandroid.main.model.Article;
 
 import java.util.List;

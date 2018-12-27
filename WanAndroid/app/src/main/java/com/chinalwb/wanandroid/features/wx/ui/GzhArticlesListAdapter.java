@@ -5,7 +5,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
-import com.chinalwb.wanandroid.features.detail.ArticleDetailActivity;
-import com.chinalwb.wanandroid.features.detail.ArticleDetailFragment;
+import com.chinalwb.wanandroid.features.detail.ui.ArticleDetailActivity;
+import com.chinalwb.wanandroid.features.detail.ui.ArticleDetailFragment;
 import com.chinalwb.wanandroid.main.model.Article;
 
 import java.util.List;

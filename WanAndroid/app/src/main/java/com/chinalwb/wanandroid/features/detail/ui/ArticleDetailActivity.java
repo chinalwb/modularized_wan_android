@@ -1,4 +1,4 @@
-package com.chinalwb.wanandroid.features.detail;
+package com.chinalwb.wanandroid.features.detail.ui;
 
 import android.os.Bundle;
 

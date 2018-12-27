@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.detail.ArticleDetailActivity"></activity>
-        <service android:name=".base.DownloadService" />
+        <activity android:name=".features.detail.ui.ArticleDetailActivity"></activity>
+        <service android:name=".base.DownloadTask" />
     </application>
 
 </manifest>

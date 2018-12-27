@@ -1,5 +1,6 @@
-package com.chinalwb.wanandroid.features.detail;
+package com.chinalwb.wanandroid.features.detail.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import com.chinalwb.wanandroid.features.detail.presenter.ArticleDetailContract;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,10 +71,22 @@ public class ArticleDetailFragment extends Fragment implements ArticleDetailCont
         this.webView.loadUrl(url);
     }
 
+    private ShareActionProvider shareActionProvider;
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.menu_more, menu);
+        MenuItem menuItem = menu.findItem(R.id.menu_item_share);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+//        setShareActionIntent();
         super.onCreateOptionsMenu(menu, menuInflater);
+    }
+
+    private void setShareActionIntent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, title);
+        shareActionProvider.setShareIntent(intent);
     }
 
     @Override
@@ -83,12 +98,11 @@ public class ArticleDetailFragment extends Fragment implements ArticleDetailCont
                 mPresenter.save(getContext(), url, title + ".html");
                 break;
             case R.id.menu_item_share:
-                mPresenter.share();
+                 mPresenter.share(getContext(), url, title);
                 break;
         }
 
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override

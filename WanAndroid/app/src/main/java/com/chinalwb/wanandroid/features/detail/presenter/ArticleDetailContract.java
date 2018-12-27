@@ -9,7 +9,7 @@ public interface ArticleDetailContract {
 
     interface Presenter extends BasePresenter {
         void save(Context context, String url, String fileName);
-        void share();
+        void share(Context context, String url, String title);
     }
 
     interface View extends BaseView<Presenter> {
