@@ -76,17 +76,7 @@ public class ArticleDetailFragment extends Fragment implements ArticleDetailCont
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.menu_more, menu);
-        MenuItem menuItem = menu.findItem(R.id.menu_item_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-//        setShareActionIntent();
         super.onCreateOptionsMenu(menu, menuInflater);
-    }
-
-    private void setShareActionIntent() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, title);
-        shareActionProvider.setShareIntent(intent);
     }
 
     @Override
