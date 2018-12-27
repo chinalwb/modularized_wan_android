@@ -48,8 +48,12 @@ public class GzhArticlesListAdapter extends RecyclerView.Adapter<GzhArticlesList
             Article article = articleList.get(pos);
             String url = article.getLink();
             String title = article.getTitle();
+            String author = article.getAuthor();
+            String date = article.getNiceDate();
             intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_URL, url);
             intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_TITLE, title);
+            intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_AUTHOR, author);
+            intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_DATE, date);
             v.getContext().startActivity(intent);
         }
     };

@@ -9,6 +9,14 @@
         <item name="android:itemBackground">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="BigTitle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="Title">
         <item name="android:textSize">14sp</item>
         <item name="android:singleLine">true</item>
@@ -20,6 +28,10 @@
         <item name="android:textColor">@android:color/darker_gray</item>
     </style>
 
+    <style name="Title.White" parent="Title">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="SubTitle">
         <item name="android:textSize">12sp</item>
         <item name="android:singleLine">true</item>
@@ -28,6 +40,10 @@
 
     <style name="SubTitle.Light" parent="SubTitle">
         <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="SubTitle.White" parent="SubTitle">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>

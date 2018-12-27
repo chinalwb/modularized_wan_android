@@ -29,6 +29,8 @@ public class ArticleDetailFragment extends Fragment implements ArticleDetailCont
 
     public static final String EXTRA_ARTICLE_URL = "EXTRA_ARTICLE_URL";
     public static final String EXTRA_ARTICLE_TITLE = "EXTRA_ARTICLE_TITLE";
+    public static final String EXTRA_ARTICLE_AUTHOR = "EXTRA_ARTICLE_AUTHOR";
+    public static final String EXTRA_ARTICLE_DATE = "EXTRA_ARTICLE_DATE";
     private String url;
     private String title;
 

@@ -1,6 +1,7 @@
 package com.chinalwb.wanandroid.features.detail.ui;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
 import com.chinalwb.wanandroid.features.detail.presenter.ArticleDetailPresenter;
@@ -16,6 +17,12 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.author)
+    TextView authorText;
+
+    @BindView(R.id.date)
+    TextView dateText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +42,8 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
         // Init fragment
         String url = getIntent().getStringExtra(ArticleDetailFragment.EXTRA_ARTICLE_URL);
+        String author = getIntent().getStringExtra(ArticleDetailFragment.EXTRA_ARTICLE_AUTHOR);
+        String date = getIntent().getStringExtra(ArticleDetailFragment.EXTRA_ARTICLE_DATE);
         Bundle bundle = new Bundle();
         bundle.putString(ArticleDetailFragment.EXTRA_ARTICLE_URL, url);
         bundle.putString(ArticleDetailFragment.EXTRA_ARTICLE_TITLE, title);
@@ -46,7 +55,12 @@ public class ArticleDetailActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, articleDetailFragment);
         fragmentTransaction.commit();
+
+        // Init author and date
+        authorText.setText(author);
+        dateText.setText(date);
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {

@@ -43,10 +43,14 @@ public class ArticlesListAdapter extends RecyclerView.Adapter<ArticlesListAdapte
             Article article = articleList.get(pos);
             String title = article.getTitle();
             String url = article.getLink();
+            String author = article.getAuthor();
+            String date = article.getNiceDate();
             Context context = view.getContext();
             Intent intent = new Intent(context, ArticleDetailActivity.class);
             intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_TITLE, title);
             intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_URL, url);
+            intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_AUTHOR, author);
+            intent.putExtra(ArticleDetailFragment.EXTRA_ARTICLE_DATE, date);
             context.startActivity(intent);
         }
     };
