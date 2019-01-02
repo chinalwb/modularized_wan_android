@@ -9,6 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/wanandroid_base" />
+            <option value="$PROJECT_DIR$/wanandroid_projects" />
+            <option value="$PROJECT_DIR$/wanandroid_tree" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,8 +1,16 @@
 package com.chinalwb.wanandroid;
 
+import android.app.Service;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
+
+import com.chinalwb.wanandroid_base.ServiceProvider;
+import com.chinalwb.wanandroid_base.services.INavigationViewService;
+import com.chinalwb.wanandroid_base.services.NavigationViewItem;
+import com.chinalwb.wanandroid_base.services.NavigationViewService;
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.view.GravityCompat;
@@ -10,9 +18,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.chinalwb.wanandroid.base.RetrofitClient;
@@ -22,6 +30,8 @@ import com.chinalwb.wanandroid.features.wx.ui.WxFragment;
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
 import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
 import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         initToolbar();
+        initNavigationView();
         showFragment();
     }
 
@@ -85,6 +96,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void initNavigationView() {
+        Menu menu = navigationView.getMenu();
+
+        INavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
+        List<NavigationViewItem> navigationViewItemList = navigationViewService.getNavigationViewItemList();
+
+        for (NavigationViewItem navigationViewItem : navigationViewItemList) {
+            int groupId = navigationViewItem.getGroupId();
+            int itemId = navigationViewItem.getItemId();
+            int order = navigationViewItem.getOrder();
+            CharSequence title = navigationViewItem.getTitle();
+            MenuItem menuItem = menu.add(groupId, itemId, order, title);
+
+            // Icon Resource
+            int iconRes = navigationViewItem.getIconRes();
+            if (iconRes != 0) {
+                menuItem.setIcon(iconRes);
+            }
+            menuItem.setCheckable(true);
+            menuItem.setChecked(navigationViewItem.isChecked());
+
+            if (navigationViewItem.isChecked()) {
+                this.setTitle(title);
+            }
+
+            // Click Listener
+            MenuItem.OnMenuItemClickListener clickListener = navigationViewItem.getClickListener();
+            if (clickListener != null) {
+                menuItem.setOnMenuItemClickListener(clickListener);
+            }
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -96,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         int menuId = menuItem.getItemId();
 
+        Log.e("XX", "Menu Id == " + menuId);
+
         boolean handled = false;
         if (menuId == this.currentViewId) {
             handled = true;
@@ -105,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (!handled) {
             showFragment();
-            menuItem.setCheckable(true);
+            menuItem.setChecked(true);
         }
 
         CharSequence title = menuItem.getTitle();
@@ -139,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Needs to be dynamic loaded
+     *
      * @TODO
      */
     private void showWx() {

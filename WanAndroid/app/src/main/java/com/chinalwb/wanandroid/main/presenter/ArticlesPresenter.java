@@ -42,6 +42,8 @@ public class ArticlesPresenter implements ArticlesContract.Presenter {
                 toggleLoading(false);
             }
         });
+
+
     }
 
     @Override
