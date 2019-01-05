@@ -1,6 +1,5 @@
 package com.chinalwb.wanandroid.features.detail.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,13 +11,12 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import com.chinalwb.wanandroid.R;
-import com.chinalwb.wanandroid.base.Util;
+import com.chinalwb.wanandroid_base.Util;
 import com.chinalwb.wanandroid.features.detail.presenter.ArticleDetailContract;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.ShareActionProvider;
-import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;

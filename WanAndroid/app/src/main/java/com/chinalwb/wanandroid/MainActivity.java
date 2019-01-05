@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final String CURRENT_VIEW_ID = "CURRENT_VIEW_ID";
 
-    ArticlesPresenter mArticlesPresenter;
+    private List<NavigationViewItem> navigationViewItemList;
 
     private int currentViewId = R.id.nav_main;
 
@@ -90,19 +90,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 toolbar,
                 R.string.nav_open_drawer,
                 R.string.nav_close_drawer);
-        drawerLayout.addDrawerListener(toggle);
+        this.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
+        this.navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void initNavigationView() {
-        Menu menu = navigationView.getMenu();
+        Menu menu = this.navigationView.getMenu();
 
         INavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
-        List<NavigationViewItem> navigationViewItemList = navigationViewService.getNavigationViewItemList();
+        this.navigationViewItemList = navigationViewService.getNavigationViewItemList();
 
-        for (NavigationViewItem navigationViewItem : navigationViewItemList) {
+        for (NavigationViewItem navigationViewItem : this.navigationViewItemList) {
             int groupId = navigationViewItem.getGroupId();
             int itemId = navigationViewItem.getItemId();
             int order = navigationViewItem.getOrder();
@@ -119,12 +119,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if (navigationViewItem.isChecked()) {
                 this.setTitle(title);
-            }
-
-            // Click Listener
-            MenuItem.OnMenuItemClickListener clickListener = navigationViewItem.getClickListener();
-            if (clickListener != null) {
-                menuItem.setOnMenuItemClickListener(clickListener);
             }
         }
     }
@@ -160,6 +154,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void showFragment() {
+        for (NavigationViewItem navigationViewItem : this.navigationViewItemList) {
+            int navigationViewItemId = navigationViewItem.getItemId();
+            if (navigationViewItemId == this.currentViewId) {
+                navigationViewItem.showFragment(getSupportFragmentManager(), R.id.fragment_container);
+                return;
+            }
+        }
         switch (this.currentViewId) {
             case R.id.nav_main:
                 showArticles();
@@ -179,7 +180,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
 
         IArticlesApi articlesApi = RetrofitClient.getRetrofit().create(IArticlesApi.class);
-        mArticlesPresenter = new ArticlesPresenter(articlesApi, articlesListFragment);
+        ArticlesPresenter articlesPresenter = new ArticlesPresenter(articlesApi,
+                articlesListFragment);
         Log.e("XX", "show articles fragment == " + articlesListFragment);
     }
 

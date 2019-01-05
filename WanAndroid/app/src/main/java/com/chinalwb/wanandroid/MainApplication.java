@@ -4,6 +4,10 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.chinalwb.wanandroid.base.RetrofitClient;
+import com.chinalwb.wanandroid.main.api.IArticlesApi;
+import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
+import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
 import com.chinalwb.wanandroid_base.AppConfig;
 import com.chinalwb.wanandroid_base.BaseApplication;
 import com.chinalwb.wanandroid_base.ServiceProvider;
@@ -27,16 +31,14 @@ public class MainApplication extends BaseApplication {
         List<NavigationViewItem> navigationViewItemList = navigationViewService.getNavigationViewItemList();
 
         NavigationViewItem main = new NavigationViewItem(
-                1, 1,1,getResources().getString(R.string.nav_main));
+                1, R.id.nav_main,1,getResources().getString(R.string.nav_main));
         main.setChecked(true);
+
+        ArticlesListFragment articlesListFragment = ArticlesListFragment.newInstance();
+        IArticlesApi articlesApi = RetrofitClient.getRetrofit().create(IArticlesApi.class);
+        new ArticlesPresenter(articlesApi, articlesListFragment);
+        main.setFragment(articlesListFragment);
         navigationViewItemList.add(main);
-        main.setClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Log.e("XX", "Show Fragment!!");
-                return false;
-            }
-        });
     }
 
     private void initModuleServiceData() {

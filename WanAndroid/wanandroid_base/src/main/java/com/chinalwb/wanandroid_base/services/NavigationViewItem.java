@@ -1,6 +1,14 @@
 package com.chinalwb.wanandroid_base.services;
 
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.chinalwb.wanandroid_base.Util;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class NavigationViewItem {
 
@@ -10,13 +18,29 @@ public class NavigationViewItem {
     private CharSequence title;
     private int iconRes;
     private boolean checked;
-    private MenuItem.OnMenuItemClickListener clickListener;
+    private Fragment fragment;
 
     public NavigationViewItem(int groupId, int itemId, int order, CharSequence title) {
         this.groupId = groupId;
         this.itemId = itemId;
         this.order = order;
         this.title = title;
+    }
+
+    /**
+     * Click the item to show fragment in fragment container
+     * @param fragmentManager
+     * @param fragmentContainerId
+     */
+    public void showFragment(FragmentManager fragmentManager, int fragmentContainerId) {
+        if (this.fragment == null) {
+            Log.e("xx", "Fragment is null!");
+            return;
+        }
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(fragmentContainerId, fragment);
+        fragmentTransaction.commit();
     }
 
     public int getGroupId() {
@@ -59,19 +83,19 @@ public class NavigationViewItem {
         this.iconRes = iconRes;
     }
 
-    public MenuItem.OnMenuItemClickListener getClickListener() {
-        return clickListener;
-    }
-
-    public void setClickListener(MenuItem.OnMenuItemClickListener clickListener) {
-        this.clickListener = clickListener;
-    }
-
     public boolean isChecked() {
         return checked;
     }
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public Fragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
     }
 }

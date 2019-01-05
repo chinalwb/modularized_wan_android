@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chinalwb.wanandroid.R;
-import com.chinalwb.wanandroid.base.Util;
+import com.chinalwb.wanandroid_base.Util;
 import com.chinalwb.wanandroid.features.wx.model.GzhTab;
 import com.chinalwb.wanandroid.features.wx.presenter.WxGzhContract;
 import com.chinalwb.wanandroid.main.model.Article;
