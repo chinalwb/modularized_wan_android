@@ -1,10 +1,6 @@
 package com.chinalwb.wanandroid;
 
-import android.util.Log;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
-import com.chinalwb.wanandroid.base.RetrofitClient;
+import com.chinalwb.wanandroid_base.base.RetrofitClient;
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
 import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
 import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;

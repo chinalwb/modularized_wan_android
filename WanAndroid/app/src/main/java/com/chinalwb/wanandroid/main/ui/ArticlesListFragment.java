@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.chinalwb.wanandroid.R;
-import com.chinalwb.wanandroid.main.model.Article;
+import com.chinalwb.wanandroid_base.features.article.model.Article;
 import com.chinalwb.wanandroid.main.presenter.ArticlesContract;
 
 import java.util.List;

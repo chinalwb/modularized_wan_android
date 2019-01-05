@@ -1,6 +1,5 @@
 package com.chinalwb.wanandroid;
 
-import android.app.Service;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,7 +7,6 @@ import androidx.annotation.NonNull;
 import com.chinalwb.wanandroid_base.ServiceProvider;
 import com.chinalwb.wanandroid_base.services.INavigationViewService;
 import com.chinalwb.wanandroid_base.services.NavigationViewItem;
-import com.chinalwb.wanandroid_base.services.NavigationViewService;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.fragment.app.FragmentManager;
@@ -23,10 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.chinalwb.wanandroid.base.RetrofitClient;
-import com.chinalwb.wanandroid.features.wx.api.IGzhApi;
-import com.chinalwb.wanandroid.features.wx.presenter.WxPresenter;
-import com.chinalwb.wanandroid.features.wx.ui.WxFragment;
+import com.chinalwb.wanandroid_base.base.RetrofitClient;
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
 import com.chinalwb.wanandroid.main.presenter.ArticlesPresenter;
 import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
@@ -191,13 +186,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * @TODO
      */
     private void showWx() {
-        WxFragment wxFragment = WxFragment.newInstance();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, wxFragment);
-        fragmentTransaction.commit();
 
-        IGzhApi gzhApi = RetrofitClient.getRetrofit().create(IGzhApi.class);
-        WxPresenter wxPresenter = new WxPresenter(gzhApi, wxFragment);
     }
 }

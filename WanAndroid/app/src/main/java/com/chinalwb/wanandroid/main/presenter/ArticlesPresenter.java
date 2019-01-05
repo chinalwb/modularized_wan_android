@@ -1,8 +1,8 @@
 package com.chinalwb.wanandroid.main.presenter;
 
 import com.chinalwb.wanandroid.main.api.IArticlesApi;
-import com.chinalwb.wanandroid.main.model.Article;
-import com.chinalwb.wanandroid.main.model.ArticlesResponse;
+import com.chinalwb.wanandroid_base.features.article.model.Article;
+import com.chinalwb.wanandroid_base.features.article.model.ArticlesResponse;
 
 import java.util.List;
 

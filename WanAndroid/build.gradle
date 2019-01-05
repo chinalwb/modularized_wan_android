@@ -10,7 +10,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-        
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -27,4 +27,25 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    commonDependencies = [
+            // Android support
+            appcompatImpl: "androidx.appcompat:appcompat:1.1.0-alpha01",
+            materialImpl: "com.google.android.material:material:1.1.0-alpha02",
+            constraintLayoutImpl: "androidx.constraintlayout:constraintlayout:2.0.0-alpha3",
+            // retrofit
+            retrofitImpl: "com.squareup.retrofit2:retrofit:2.5.0",
+            gsonImpl: "com.google.code.gson:gson:2.8.5",
+            converterGsonImpl: "com.squareup.retrofit2:converter-gson:2.5.0",
+            // OKHttp
+            loggingInterceptorImpl: "com.squareup.okhttp3:logging-interceptor:3.4.1",
+            okhttpImpl: "com.squareup.okhttp3:okhttp:3.11.0",
+            // google guava checkNotNull
+            guavaImpl: "com.google.guava:guava:18.0",
+            // butterKnife
+            butterKnifeImpl: "com.jakewharton:butterknife:9.0.0-rc3",
+            butterKnifeAnno: "com.jakewharton:butterknife-compiler:9.0.0-rc3"
+    ]
 }

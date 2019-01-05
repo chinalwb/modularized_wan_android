@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chinalwb.wanandroid.R;
-import com.chinalwb.wanandroid.base.Constants;
-import com.chinalwb.wanandroid.features.detail.ui.ArticleDetailActivity;
-import com.chinalwb.wanandroid.features.detail.ui.ArticleDetailFragment;
-import com.chinalwb.wanandroid.main.model.Article;
+import com.chinalwb.wanandroid_base.base.Constants;
+import com.chinalwb.wanandroid_base.features.detail.ui.ArticleDetailActivity;
+import com.chinalwb.wanandroid_base.features.detail.ui.ArticleDetailFragment;
+import com.chinalwb.wanandroid_base.features.article.model.Article;
 
 import java.util.List;
 
