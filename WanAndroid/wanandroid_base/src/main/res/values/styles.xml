@@ -17,6 +17,10 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="BigTitle.Light" parent="BigTitle">
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
     <style name="Title">
         <item name="android:textSize">14sp</item>
         <item name="android:singleLine">true</item>

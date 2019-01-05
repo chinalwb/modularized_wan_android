@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="http://http://www.wanandroid.com"
+            android:text="http://www.wanandroid.com"
             style="@style/SubTitle.Light"
             />
     </LinearLayout>

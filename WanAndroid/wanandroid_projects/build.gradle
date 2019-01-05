@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 28
@@ -26,9 +27,18 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation project(':wanandroid_base')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+    implementation project(':wanandroid_base')
+
+    commonDependencies.each { key, value ->
+        if (key.endsWith('Anno')) {
+            annotationProcessor value
+        } else if (key.endsWith('Impl')) {
+            implementation value
+        } else if (key.endsWith('Api')) {
+            api value
+        }
+    }
 }
