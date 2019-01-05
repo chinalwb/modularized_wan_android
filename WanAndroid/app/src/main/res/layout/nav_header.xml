@@ -3,31 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:background="@color/colorPrimary"
     >
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/chinalwb"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="top|center_horizontal"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rain Liu"
+            android:text="组件化的 WanAndroid"
             style="@style/Title.Light"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="https://github.com/chinalwb"
+            android:text="http://http://www.wanandroid.com"
             style="@style/SubTitle.Light"
             />
     </LinearLayout>
