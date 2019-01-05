@@ -19,7 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.chinalwb.wanandroid_base.features.detail.ui.ArticleDetailActivity"></activity>
     </application>
 
 </manifest>

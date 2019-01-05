@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chinalwb.wanandroid_base" />
+    package="com.chinalwb.wanandroid_base">
+
+    <application>
+        <activity android:name="com.chinalwb.wanandroid_base.features.detail.ui.ArticleDetailActivity"></activity>
+    </application>
+</manifest>

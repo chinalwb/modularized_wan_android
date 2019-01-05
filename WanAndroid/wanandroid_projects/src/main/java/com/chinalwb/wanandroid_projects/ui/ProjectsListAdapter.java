@@ -1,21 +1,31 @@
 package com.chinalwb.wanandroid_projects.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chinalwb.wanandroid_base.Util;
 import com.chinalwb.wanandroid_base.features.article.model.Article;
 import com.chinalwb.wanandroid_projects.R;
 import com.chinalwb.wanandroid_projects.R2;
 
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -81,6 +91,52 @@ public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapte
             } else {
                 favoriteImage.setImageResource(R.drawable.favorite_no);
             }
+
+            new LoadImageTask(previewImage).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
+                    project.getEnvelopePic());
+        }
+    }
+
+    private static class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+        WeakReference<ImageView> imageViewWeakReference = null;
+        LoadImageTask(ImageView imageView) {
+            this.imageViewWeakReference = new WeakReference<ImageView>(imageView);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ImageView imageView = imageViewWeakReference.get();
+            if (imageView != null) {
+                imageView.setImageResource(R.drawable.ic_launcher_background);
+            }
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            Bitmap scaledBitmap = getScaledBitmap(params[0]);
+            return scaledBitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            ImageView imageView = imageViewWeakReference.get();
+            if (imageView != null && bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+            }
+        }
+
+        private Bitmap getScaledBitmap(String url) {
+            try {
+                URL imageUrl = new URL(url);
+                return BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 }
