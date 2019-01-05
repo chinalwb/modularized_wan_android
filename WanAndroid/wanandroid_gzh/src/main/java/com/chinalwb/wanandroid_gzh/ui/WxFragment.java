@@ -29,10 +29,10 @@ public class WxFragment extends Fragment implements WxContract.View {
 
     WxGzhPagerAdapter mPagerAdapter;
 
-    @BindView(R2.id.tabs)
+    @BindView(R2.id.gzh_tabs)
     TabLayout mTabLayout;
 
-    @BindView(R2.id.pager)
+    @BindView(R2.id.gzh_pager)
     ViewPager mViewPager;
 
     public WxFragment() {
@@ -47,7 +47,7 @@ public class WxFragment extends Fragment implements WxContract.View {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(
-                R.layout.fragment_wx,
+                R.layout.gzh_fragment_wx,
                 container,
                 false
         );

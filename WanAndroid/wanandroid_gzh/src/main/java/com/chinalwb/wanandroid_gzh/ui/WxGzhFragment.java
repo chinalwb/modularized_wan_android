@@ -30,7 +30,7 @@ public class WxGzhFragment extends Fragment implements WxGzhContract.View {
     private GzhTab mGzhTab;
     private GzhArticlesListAdapter mAdapter;
 
-    @BindView(R2.id.articles_recycler_view)
+    @BindView(R2.id.gzh_articles_recycler_view)
     RecyclerView mRecyclerView;
 
     public WxGzhFragment() {
@@ -58,7 +58,7 @@ public class WxGzhFragment extends Fragment implements WxGzhContract.View {
     }
 
     private int getLayoutId() {
-        return R.layout.fragment_wx_gzh;
+        return R.layout.gzh_fragment_wx_gzh;
     }
 
     @Override

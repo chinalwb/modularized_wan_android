@@ -63,7 +63,7 @@ public class GzhArticlesListAdapter extends RecyclerView.Adapter<GzhArticlesList
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         CardView cardView = (CardView) LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.adapter_item_gzh_article, viewGroup, false);
+                R.layout.gzh_adapter_item_gzh_article, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(cardView, itemClickListener);
         return viewHolder;
     }
@@ -88,13 +88,13 @@ public class GzhArticlesListAdapter extends RecyclerView.Adapter<GzhArticlesList
         private CardView cardView;
         private OnItemClickListener itemClickListener;
 
-        @BindView(R2.id.favorite_image)
+        @BindView(R2.id.gzh_favorite_image)
         public ImageView favoriteImageView;
 
-        @BindView(R2.id.title_view)
+        @BindView(R2.id.gzh_title_view)
         public TextView title;
 
-        @BindView(R2.id.time_view)
+        @BindView(R2.id.gzh_time_view)
         public TextView time;
 
         public ViewHolder(CardView cardView, final OnItemClickListener itemClickListener) {
