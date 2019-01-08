@@ -46,6 +46,9 @@ ext {
             guavaImpl: "com.google.guava:guava:18.0",
             // butterKnife
             butterKnifeImpl: "com.jakewharton:butterknife:9.0.0-rc3",
-            butterKnifeAnno: "com.jakewharton:butterknife-compiler:9.0.0-rc3"
+            butterKnifeAnno: "com.jakewharton:butterknife-compiler:9.0.0-rc3",
+            // Glide
+            glideImpl: 'com.github.bumptech.glide:glide:4.8.0',
+            glideKnifeAnno: 'com.github.bumptech.glide:compiler:4.8.0'
     ]
 }
