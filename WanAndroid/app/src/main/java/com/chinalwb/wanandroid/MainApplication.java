@@ -7,7 +7,7 @@ import com.chinalwb.wanandroid.main.ui.ArticlesListFragment;
 import com.chinalwb.wanandroid_base.AppConfig;
 import com.chinalwb.wanandroid_base.BaseApplication;
 import com.chinalwb.wanandroid_base.ServiceProvider;
-import com.chinalwb.wanandroid_base.services.INavigationViewService;
+import com.chinalwb.wanandroid_base.services.NavigationViewService;
 import com.chinalwb.wanandroid_base.services.NavigationViewItem;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class MainApplication extends BaseApplication {
 
     @Override
     public void initServiceData() {
-        INavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
+        NavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
         List<NavigationViewItem> navigationViewItemList = navigationViewService.getNavigationViewItemList();
 
         NavigationViewItem main = new NavigationViewItem(

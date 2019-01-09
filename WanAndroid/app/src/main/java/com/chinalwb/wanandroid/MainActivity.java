@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.chinalwb.wanandroid_base.ServiceProvider;
-import com.chinalwb.wanandroid_base.services.INavigationViewService;
+import com.chinalwb.wanandroid_base.services.NavigationViewService;
 import com.chinalwb.wanandroid_base.services.NavigationViewItem;
 import com.google.android.material.navigation.NavigationView;
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initNavigationView() {
         Menu menu = this.navigationView.getMenu();
 
-        INavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
+        NavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
         this.navigationViewItemList = navigationViewService.getNavigationViewItemList();
 
         for (NavigationViewItem navigationViewItem : this.navigationViewItemList) {

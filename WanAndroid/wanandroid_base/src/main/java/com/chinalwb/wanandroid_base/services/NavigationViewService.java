@@ -3,7 +3,7 @@ package com.chinalwb.wanandroid_base.services;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NavigationViewService implements INavigationViewService {
+public class NavigationViewService {
 
     private NavigationViewService() {
         // Private Inner Constructor
@@ -19,7 +19,6 @@ public class NavigationViewService implements INavigationViewService {
 
     private List<NavigationViewItem> navigationViewItemList = new ArrayList<>();
 
-    @Override
     public List<NavigationViewItem> getNavigationViewItemList() {
         return navigationViewItemList;
     }

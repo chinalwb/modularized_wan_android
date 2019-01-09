@@ -5,7 +5,7 @@ import android.app.Service;
 import com.chinalwb.wanandroid_base.BaseApplication;
 import com.chinalwb.wanandroid_base.ServiceProvider;
 import com.chinalwb.wanandroid_base.base.RetrofitClient;
-import com.chinalwb.wanandroid_base.services.INavigationViewService;
+import com.chinalwb.wanandroid_base.services.NavigationViewService;
 import com.chinalwb.wanandroid_base.services.NavigationViewItem;
 import com.chinalwb.wanandroid_gzh.api.IGzhApi;
 import com.chinalwb.wanandroid_gzh.presenter.WxPresenter;
@@ -29,7 +29,7 @@ public class GzhApplication extends BaseApplication {
         new WxPresenter(gzhApi, wxFragment);
         navigationViewItem.setFragment(wxFragment);
 
-        INavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
+        NavigationViewService navigationViewService = ServiceProvider.getNavigationViewService();
         List<NavigationViewItem> navigationViewItemList = navigationViewService.getNavigationViewItemList();
         navigationViewItemList.add(navigationViewItem);
     }

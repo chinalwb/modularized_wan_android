@@ -1,11 +1,10 @@
 package com.chinalwb.wanandroid_base;
 
-import com.chinalwb.wanandroid_base.services.INavigationViewService;
 import com.chinalwb.wanandroid_base.services.NavigationViewService;
 
 public class ServiceProvider {
 
-    public static INavigationViewService getNavigationViewService() {
+    public static NavigationViewService getNavigationViewService() {
         return NavigationViewService.getInstance();
     }
 
