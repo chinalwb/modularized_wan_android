@@ -5,8 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.chinalwb.wanandroid_base.ServiceProvider;
-import com.chinalwb.wanandroid_base.services.NavigationViewService;
-import com.chinalwb.wanandroid_base.services.NavigationViewItem;
+import com.chinalwb.wanandroid_base.services.navigation.NavigationViewService;
+import com.chinalwb.wanandroid_base.services.navigation.NavigationViewItem;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.fragment.app.FragmentManager;

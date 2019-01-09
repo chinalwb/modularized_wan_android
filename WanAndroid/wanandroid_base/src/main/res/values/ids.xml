@@ -4,4 +4,5 @@
     <item name="nav_projects" type="id"/>
     <item name="nav_tree" type="id"/>
     <item name="nav_gzh" type="id"/>
+    <item name="nav_contributor" type="id"/>
 </resources>

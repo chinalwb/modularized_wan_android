@@ -1,4 +1,4 @@
-package com.chinalwb.wanandroid_base.services;
+package com.chinalwb.wanandroid_base.services.navigation;
 
 import android.util.Log;
 import android.view.MenuItem;

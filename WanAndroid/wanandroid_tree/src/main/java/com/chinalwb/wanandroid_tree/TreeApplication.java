@@ -2,8 +2,8 @@ package com.chinalwb.wanandroid_tree;
 
 import com.chinalwb.wanandroid_base.BaseApplication;
 import com.chinalwb.wanandroid_base.ServiceProvider;
-import com.chinalwb.wanandroid_base.services.NavigationViewService;
-import com.chinalwb.wanandroid_base.services.NavigationViewItem;
+import com.chinalwb.wanandroid_base.services.navigation.NavigationViewService;
+import com.chinalwb.wanandroid_base.services.navigation.NavigationViewItem;
 import com.chinalwb.wanandroid_tree.ui.TreeFragment;
 
 import java.util.List;

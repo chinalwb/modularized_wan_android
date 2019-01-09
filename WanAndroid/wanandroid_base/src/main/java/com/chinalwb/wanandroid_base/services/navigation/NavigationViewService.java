@@ -1,4 +1,4 @@
-package com.chinalwb.wanandroid_base.services;
+package com.chinalwb.wanandroid_base.services.navigation;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,11 @@
 package com.chinalwb.wanandroid_projects;
 
-import android.util.Log;
-import android.view.MenuItem;
-
 import com.chinalwb.wanandroid_base.BaseApplication;
 import com.chinalwb.wanandroid_base.ServiceProvider;
 import com.chinalwb.wanandroid_base.base.RetrofitClient;
-import com.chinalwb.wanandroid_base.services.NavigationViewItem;
+import com.chinalwb.wanandroid_base.services.contributor.ContributorItem;
+import com.chinalwb.wanandroid_base.services.contributor.ContributorService;
+import com.chinalwb.wanandroid_base.services.navigation.NavigationViewItem;
 import com.chinalwb.wanandroid_projects.api.IProjectsApi;
 import com.chinalwb.wanandroid_projects.presenter.ProjectsPresenter;
 import com.chinalwb.wanandroid_projects.ui.ProjectsFragment;
@@ -31,5 +30,19 @@ public class ProjectApplication extends BaseApplication {
         navigationViewItem.setFragment(projectsFragment);
 
         navigationItemList.add(navigationViewItem);
+
+
+        // 初始化 贡献者 数据
+        ContributorService contributorService = ServiceProvider.getContributorService();
+        List<ContributorItem> contributorItemList  = contributorService.getContributorItemList();
+        ContributorItem contributorItem = new ContributorItem(
+                "https://avatars0.githubusercontent.com/u/1758864?s=460&v=4",
+                "chinalwb",
+                "项目组件",
+                "项目组件为主组件提供了ProjectsFragment作为导航项目入口，Fragment内部使用MVP结构。" +
+                        "用Glide来显示RecyclerView#Adapter中的图片。",
+                "https://github.com/chinalwb"
+        );
+        contributorItemList.add(contributorItem);
     }
 }
