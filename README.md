@@ -16,7 +16,7 @@
 ![结构图](./images/constructure.png)
 
 运行截屏：
-![导航](./images/nav.png){:height="50%" width="50%"}
+![导航](./images/nav.png)
 
 ![首页](./images/main.png)
 
@@ -249,6 +249,9 @@ public class AppConfig {
 
 贡献者列表中也加上了你的名字:
 ![贡献者列表](./images/test3.png)
+
+
+10. 我知道其中有很多可以改进的地方，请您指出来吧！
 
 
 
