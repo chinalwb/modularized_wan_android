@@ -16,7 +16,7 @@
 ![结构图](./images/constructure.png)
 
 运行截屏：
-![导航](./images/nav.png)
+![导航](./images/nav.png){:height="50%" width="50%"}
 
 ![首页](./images/main.png)
 
