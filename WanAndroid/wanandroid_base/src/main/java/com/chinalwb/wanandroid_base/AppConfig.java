@@ -6,12 +6,14 @@ public class AppConfig {
     private static final String MODULE_TREE = "com.chinalwb.wanandroid_tree.TreeApplication";
     private static final String MODULE_GZH = "com.chinalwb.wanandroid_gzh.GzhApplication";
     private static final String MODULE_CONTRIBUTOR = "com.chinalwb.wanandroid_contributor.ContributorApplication";
+    private static final String MODULE_TEST = "com.chinalwb.wanandroid_test.TestApplication";
 
     public static String[] MODULES = {
             MODULE_PROJECT,
             MODULE_TREE,
             MODULE_GZH,
-            MODULE_CONTRIBUTOR
+            MODULE_CONTRIBUTOR,
+            MODULE_TEST
     };
 
 }

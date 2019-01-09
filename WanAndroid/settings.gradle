@@ -1,1 +1,1 @@
-include ':app', ':wanandroid_projects', ':wanandroid_base', ':wanandroid_tree', ':wanandroid_gzh', ':wanandroid_contributor'
+include ':app', ':wanandroid_projects', ':wanandroid_base', ':wanandroid_tree', ':wanandroid_gzh', ':wanandroid_contributor', ':wanandroid_test'

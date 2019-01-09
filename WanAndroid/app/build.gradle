@@ -44,4 +44,5 @@ dependencies {
     implementation project(':wanandroid_tree')
     implementation project(':wanandroid_gzh')
     implementation project(':wanandroid_contributor')
+    implementation project(':wanandroid_test')
 }
