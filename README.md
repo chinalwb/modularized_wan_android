@@ -1,12 +1,9 @@
 # 组件化的 wan_android App
 
-[前言](#前言)
-
-[组件化思想](#组件化思想)
-
-[实现方法](#实现方法)
-
-[自己亲手做一个组件?](#在上述内容基础上，如何实现一个自己的玩Android组件？)
+* [前言](#前言)
+* [组件化思想](#组件化思想)
+* [实现方法](#实现方法)
+* [自己亲手做一个组件?](#自己亲手做一个组件)
 
 
 
@@ -86,7 +83,9 @@ public class ProjectApplication extends BaseApplication {
 7. `app`在运行的时候用反射读取所有导航页组件提供的信息并展示到页面上
 8. 由于每个导航页组件在初始化`NavigationViewItem `的时候都提供了Fragment，所以App运行的时候可以知道点击导航项之后显示哪个fragment
 
-### 在上述内容基础上，如何实现一个自己的玩Android组件？
+### 自己亲手做一个组件 
+
+在上述内容基础上，如何实现一个自己的玩Android组件？
 1. checkout 这个项目
 2. 在Android Studio中，右键 `app`, 选择 `New Module` > `Android Library` > Next 填入：`wanandroid_test` > Finish
 ![New Module] (./images/newModule.png)
