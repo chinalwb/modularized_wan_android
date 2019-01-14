@@ -1,5 +1,8 @@
 # 组件化的 wan_android App
 
+[前言](#前言)
+
+
 ### 前言
 * 依照 玩Android 惯例，感谢鸿洋大神提供的 玩Android API
 * 我是一个小小小小小菜鸟，这个项目是我用来学习Android开发的
