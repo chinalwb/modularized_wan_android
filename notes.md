@@ -22,6 +22,18 @@ Todo:
 Issues:
 1. 屏幕切换
 2. RecylerAdapter.ViewHolder setOnClickListener 的最佳实践？
+> 由于 onCreateViewHolder 和 onBindViewHolder 都会被多次调用，直接在这两个方法中 new 一个onClickListener 的实例都会造成对象的反复创建和销毁
+
+> 所以相对比较好的做法就是在 Adapter 中定义一个接口回调方法，并在 Adapter 中实例化一个这个接口类型的成员变量
+
+> 在 onCreateViewHolder 方法中调用 ViewHolder 的构造方法，传递这个 listener 的引用给 ViewHolder
+
+> 在 ViewHolder 的构造方法中为 view 设定 setOnClickListener， 在 onClick 中调用这个接口的回调，把 view 和  `getLayoutPosition()` 传递给回调方法
+
+> 这样在回调方法中就可以根据传入的view和pos，得到点击的view和位置，做出相关处理。
+
+> 示例代码： [ArticlesListAdapter.java](https://github.com/chinalwb/wan_android/blob/a1923244afb3d7a2097f516e2db2704d2bcd1b48/WanAndroid/app/src/main/java/com/chinalwb/wanandroid/main/ui/ArticlesListAdapter.java)
+
 3. Glide
 4. Retrofit
 5. OKHttp
