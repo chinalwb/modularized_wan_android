@@ -90,8 +90,8 @@ public class ProjectApplication extends BaseApplication {
 在上述内容基础上，如何实现一个自己的玩Android组件？
 1. checkout 这个项目
 2. 在Android Studio中，右键 `app`, 选择 `New Module` > `Android Library` > Next 填入：`wanandroid_test` > Finish
-![New Module] (./images/newModule.png)
-![New Module] (./images/newModule2.png)
+![New Module](./images/newModule.png)
+![New Module](./images/newModule2.png)
 3. 编辑 `wanandroid_test`项目下的`build.gradle`, 添加如下的dependencies配置：
 ```
 dependencies {
